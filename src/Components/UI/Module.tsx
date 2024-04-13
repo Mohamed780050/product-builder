@@ -1,16 +1,17 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import Form from "./Form";
+import { Fragment, ReactNode } from "react";
 interface IProps {
   isOpen: boolean;
-  setIsOpen: (value: boolean) => void;
   Title: string;
+  Content?: ReactNode;
+  closeModal: (value: boolean) => void;
 }
-export default function MyModal({ isOpen, setIsOpen, Title }: IProps) {
-  function closeModal() {
-    setIsOpen(false);
-  }
-
+export default function MyModal({
+  isOpen,
+  Title,
+  Content,
+  closeModal,
+}: IProps) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -38,13 +39,15 @@ export default function MyModal({ isOpen, setIsOpen, Title }: IProps) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    {Title}
-                  </Dialog.Title>
-                  <Form closeModal={closeModal} />
+                  {Title && (
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg mb-3 font-medium leading-6 text-gray-900"
+                    >
+                      {Title}
+                    </Dialog.Title>
+                  )}
+                  {Content}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
