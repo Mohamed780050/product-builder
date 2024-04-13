@@ -1,9 +1,14 @@
-import { ChangeEvent, HTMLInputTypeAttribute } from "react";
+import { ChangeEvent } from "react";
 
 interface Inputs {
-  element: { id: string; name: string; lable: string; type: "text" | "number" };
+  element: {
+    id: string;
+    name: "Title" | "Description" | "ImgURL" | "Price";
+    lable: string;
+    type: "text" | "number";
+  };
   gettingDataFromTheinput: (value: ChangeEvent<HTMLInputElement>) => void;
-  defaultValue: HTMLInputTypeAttribute;
+  defaultValue: string;
 }
 function Input({
   element,
