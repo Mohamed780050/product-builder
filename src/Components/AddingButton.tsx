@@ -24,7 +24,7 @@ function AddingButton({
       <button
         onClick={() => {
           setContent(<Form closeModal={closeModal} />);
-          setModulTitle("Add a new Product")
+          setModulTitle("Add a new Product");
           openModal();
         }}
       >

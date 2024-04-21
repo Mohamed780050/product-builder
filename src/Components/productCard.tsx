@@ -3,6 +3,7 @@ import Image from "./Image";
 import Button from "./UI/Button";
 import Form from "./UI/Form";
 interface IProps {
+  id: string;
   Title: string;
   discription: string;
   ImgURL: string;
@@ -17,6 +18,7 @@ interface IProps {
 // eslint-disable-next-line react-refresh/only-export-components
 let IDLIST = 0;
 function ProductCard({
+  id,
   Title,
   discription,
   ImgURL,
@@ -29,7 +31,7 @@ function ProductCard({
   setModulTitle,
 }: IProps) {
   return (
-    <div className="rounded-md border p-3 grid">
+    <div className="rounded-md border p-3 grid" id={id}>
       <Image
         ImageURL={ImgURL}
         alt={Title}

@@ -7,22 +7,21 @@ import Form from "./Components/UI/Form";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
-  const [content, setContent] = useState(<Form closeModal={closeModal} />);
   const [modulTitle, setModulTitle] = useState("Add a new Product");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [products, setProducts] = useState([]);
+  const [content, setContent] = useState(<Form closeModal={closeModal} />);
   function openModal() {
     setIsOpen(true);
   }
   function closeModal() {
     setIsOpen(false);
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [products, setProducts] = useState([]);
   async function getInfo() {
     try {
       const respons = await fetch("http://localhost:3500/InteractWithTheDB");
       const data = await respons.json();
       setProducts(data);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -47,6 +46,7 @@ function App() {
           {products.map((product: productTypes) => (
             <ProductCard
               key={++theID}
+              id={product["_id"]}
               Title={product.Title}
               discription={product.discription}
               ImgURL={product.ImgURL}

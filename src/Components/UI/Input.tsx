@@ -9,15 +9,22 @@ interface Inputs {
   };
   gettingDataFromTheinput: (value: ChangeEvent<HTMLInputElement>) => void;
   defaultValue: string;
+  ers: {
+    Title: string | boolean;
+    Description: string | boolean;
+    ImgURL: string | boolean;
+    Price: string | boolean;
+  };
 }
 function Input({
   element,
   gettingDataFromTheinput,
   defaultValue = "",
+  ers,
 }: Inputs) {
   return (
     <div className="flex flex-col">
-      <label className="text-gray-600" htmlFor={element.id}>
+      <label className="text-gray-600 mb-[1px]" htmlFor={element.id}>
         {element.lable}
       </label>
       <input
@@ -30,6 +37,7 @@ function Input({
           gettingDataFromTheinput(e);
         }}
       />
+      <p className="text-red-800 text-sm">{ers[`${element.name}`]}</p>
     </div>
   );
 }
