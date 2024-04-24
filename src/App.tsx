@@ -10,7 +10,15 @@ function App() {
   const [modulTitle, setModulTitle] = useState("Add a new Product");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [products, setProducts] = useState([]);
-  const [content, setContent] = useState(<Form closeModal={closeModal} />);
+  // eslint-disable-next-line prefer-const
+  const [catagory, setCatagory] = useState("");
+  const [content, setContent] = useState(
+    <Form
+      closeModal={closeModal}
+      catagory={catagory}
+      setCatagory={setCatagory}
+    />
+  );
   function openModal() {
     setIsOpen(true);
   }

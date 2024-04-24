@@ -92,7 +92,22 @@ function ProductCard({
             setContent(
               <div>
                 <p className="mb-3">Are you sure</p>
-                <button className="py-1 px-2 bg-red-600 text-white rounded-md duration-500 hover:bg-red-700">
+                <button
+                  onClick={async () => {
+                    console.log(id);
+                    await fetch("http://localhost:3500/InteractWithTheDB", {
+                      method: "DELETE",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify({
+                        id: id,
+                      }),
+                    });
+                    window.location.reload();
+                  }}
+                  className="py-1 px-2 bg-red-600 text-white rounded-md duration-500 hover:bg-red-700"
+                >
                   OK!
                 </button>
               </div>

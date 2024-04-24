@@ -6,6 +6,8 @@ import ListBox from "./Listbox";
 interface Iprops {
   closeModal: () => void;
   btnName?: string;
+  catagory: string;
+  setCatagory: (value: string) => void;
   InputInfo?: {
     Title: string;
     ImgURL: string;
@@ -61,7 +63,12 @@ const colors = [
   "#B20000",
   "#FF0032",
 ];
-function Form({ closeModal, btnName = "Add", InputInfo }: Iprops) {
+function Form({
+  closeModal,
+  btnName = "Add",
+  InputInfo,
+  catagory,
+}: Iprops) {
   const [productData, setProductData] = useState({
     Title: "",
     Description: "",
@@ -101,7 +108,7 @@ function Form({ closeModal, btnName = "Add", InputInfo }: Iprops) {
         ImgURL: productData.ImgURL,
         price: productData.Price,
         colors: [...chosenColors],
-        catagory: "cat",
+        catagory: catagory,
       }),
     });
   }
@@ -134,7 +141,6 @@ function Form({ closeModal, btnName = "Add", InputInfo }: Iprops) {
           ))}
         </ul>
       )}
-
       <div>
         <h3 className="mb-1">Colors:</h3>
         <ul className="flex space-x-1 items-center justify-center flex-wrap ">
